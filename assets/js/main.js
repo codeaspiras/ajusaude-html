@@ -6,15 +6,19 @@
     form.onsubmit = (evt) => {
         evt.preventDefault();
         try {
-            const protocols = searchProtocols(documentInput.value);
-            console.log(protocols);
+            const protocols = searchProtocolsByDocument(documentInput.value);
+            if (protocols.length) {
+                printList(protocols);
+            } else {
+                printEmptyList();
+            }
         } catch (err) {
-            alert(`Ocorreu um erro: ${err}`);
+            printError(err);
             console.error(err);
         }
     }
 
-    function searchProtocols(document) {
+    function searchProtocolsByDocument(document) {
         const URL = `${baseURL}/${document}`;
         
         const req = new XMLHttpRequest();
@@ -26,5 +30,47 @@
         }
         
         return JSON.parse(req.responseText);
+    }
+
+    function protocolToString(index, protocol) {
+        return `
+        <tr>
+            <td>${index+1}</td>
+            <td>${protocol.protocolo}</td>
+            <td>${protocol.nome}</td>
+            <td>${protocol.dataNascimento}</td>
+            <td>${protocol.descricao}</td>
+            <td>${protocol.situacao}</td>
+            <td>${protocol.condicao}</td>
+        </tr>`;
+    }
+
+    function printList(protocols) {
+        const tableBody = protocols.reduce((currentBody, protocol, index) => {
+            return currentBody + protocolToString(index, protocol);
+        }, '');
+        formResult.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Protocolo</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Descrição</th>
+                    <th>Situação</th>
+                    <th>Condição</th>
+                </tr>
+            </thead>
+            <tbody>${tableBody}</tbody>
+        </table>`;
+    }
+
+    function printEmptyList() {
+        formResult.innerHTML = `<b>Sentimos muito</b>, mas não encontramos nenhum protocolo`;
+    }
+
+    function printError(err) {
+        formResult.innerHTML = `<b>Um erro aconteceu</b>: ${err}`;
     }
 })('http://localhost:3000');
