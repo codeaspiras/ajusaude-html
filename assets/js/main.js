@@ -3,33 +3,59 @@
     const documentInput = document.getElementById('document');
     const formResult = document.getElementById('searchResult');
 
-    form.onsubmit = (evt) => {
+    form.onsubmit = async (evt) => {
         evt.preventDefault();
-        try {
-            const protocols = searchProtocolsByDocument(documentInput.value);
-            if (protocols.length) {
-                printList(protocols);
-            } else {
+        printLoader();
+        const documents = documentInput.value.split(' ');
+        let searchedDocuments = [];
+        let promises = [];
+        for (const doc of documents) {
+            if (searchedDocuments.includes(doc)) {
+                continue;
+            }
+
+            searchedDocuments.push(doc);
+            promises.push(searchProtocolsByDocument(doc));
+        }
+
+        Promise.all(promises).then(
+            (results) => {
+                const protocols = [].concat(...results);
+                if (protocols.length) {
+                    printList(protocols);
+                    return;
+                }
+
                 printEmptyList();
             }
-        } catch (err) {
+        ).catch((err) => {
             printError(err);
             console.error(err);
-        }
+        })
+
     }
 
     function searchProtocolsByDocument(document) {
-        const URL = `${baseURL}/${document}`;
-        
-        const req = new XMLHttpRequest();
-        req.open('GET', URL, false);
-        req.send();
-        
-        if (req.status >= 400) {
-            throw new Error(`HTTP Status Error: code ${req.status}`);
-        }
-        
-        return JSON.parse(req.responseText);
+        return new Promise((resolve, reject) => {
+            const URL = `${baseURL}/${document}`;
+            
+            const req = new XMLHttpRequest();
+            req.open('GET', URL);
+            req.onreadystatechange = (evt) => {
+                if (req.readyState != 4) {
+                    return;
+                }
+
+                
+                if (req.status >= 400) {
+                    reject(`HTTP Status Error: code ${req.status}`);
+                    return;
+                }
+
+                resolve(JSON.parse(req.responseText));
+            };
+            req.send();
+        });
     }
 
     function protocolToString(index, protocol) {
@@ -43,6 +69,10 @@
             <td>${protocol.situacao}</td>
             <td>${protocol.condicao}</td>
         </tr>`;
+    }
+
+    function printLoader() {
+        formResult.innerHTML = `<b>Carregando</b>............`;
     }
 
     function printList(protocols) {
