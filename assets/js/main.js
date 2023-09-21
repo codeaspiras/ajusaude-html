@@ -1,4 +1,19 @@
 ;(function(baseURL) {
+    const form = document.getElementById('searchForm');
+    const documentInput = document.getElementById('document');
+    const formResult = document.getElementById('searchResult');
+
+    form.onsubmit = (evt) => {
+        evt.preventDefault();
+        try {
+            const protocols = searchProtocols(documentInput.value);
+            console.log(protocols);
+        } catch (err) {
+            alert(`Ocorreu um erro: ${err}`);
+            console.error(err);
+        }
+    }
+
     function searchProtocols(document) {
         const URL = `${baseURL}/${document}`;
         
