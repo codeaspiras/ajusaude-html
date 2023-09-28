@@ -6,6 +6,7 @@
     form.onsubmit = async (evt) => {
         evt.preventDefault();
         printLoader();
+        storeSearchInput(documentInput.value);
         const documents = documentInput.value.split(' ');
         let searchedDocuments = [];
         let promises = [];
@@ -33,6 +34,11 @@
             console.error(err);
         })
 
+    }
+    const lastSearchInput = getLastSearchedInput();
+    if (lastSearchInput) {
+        documentInput.value = lastSearchInput;
+        form.dispatchEvent(new Event('submit'));
     }
 
     function searchProtocolsByDocument(document) {
@@ -102,5 +108,13 @@
 
     function printError(err) {
         formResult.innerHTML = `<b>Um erro aconteceu</b>: ${err}`;
+    }
+
+    function getLastSearchedInput() {
+        return localStorage.getItem('_search');
+    }
+
+    function storeSearchInput(searchInput) {
+        localStorage.setItem('_search', searchInput);
     }
 })('http://localhost:3000');

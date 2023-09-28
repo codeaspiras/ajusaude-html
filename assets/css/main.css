@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     font-family: 'Gabarito', cursive;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--font-color-for-light-bg);
     background-color: var(--color-lighter-blue);
 }
