@@ -60,6 +60,11 @@ input:not([type="checkbox"],[type="radio"]):focus {
     outline: 1px solid var(--color-light-blue);
 }
 
+table {
+    width: 100%;
+    text-align: left;
+}
+
 /* Flexbox */
 .flex {
     display: flex;
@@ -86,6 +91,9 @@ input:not([type="checkbox"],[type="radio"]):focus {
     border-radius: 4px;
 }
 
+#searchResult:has(table) {
+    padding: 8px;
+}
 
 .container {
     padding: 24px;
