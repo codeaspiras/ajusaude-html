@@ -164,3 +164,9 @@ table tr th:last-child {
         max-width: 88%;
     }
 }
+/*Imagens*/
+.imagens{
+    margin: 10px auto;
+    width: 50%;
+    display: block;
+}
