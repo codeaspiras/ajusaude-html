@@ -139,7 +139,7 @@ table tr th:last-child {
     padding: 0;
 }
 
-.container {
+#container {
     padding: 24px;
     max-width: 80%;
     margin-left: auto;
@@ -147,6 +147,22 @@ table tr th:last-child {
     box-sizing: border-box;
 }
 
+/*Imagens*/
+.imagens{
+    margin: 8px auto;
+    width: 48%;
+    display: block;
+}
+footer{
+    text-align: center;
+    font-size: 12px;
+}
+.copyright{
+    color: var(--color-dark-blue);
+}
+.copyright:hover{
+    color: var(--font-color-for-light-bg);
+}
 @media screen and (max-width: 767px) {
     .container {
         max-width: 100%;
@@ -163,10 +179,4 @@ table tr th:last-child {
     .container {
         max-width: 88%;
     }
-}
-/*Imagens*/
-.imagens{
-    margin: 10px auto;
-    width: 50%;
-    display: block;
 }
