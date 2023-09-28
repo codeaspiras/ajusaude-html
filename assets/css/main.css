@@ -1,1 +1,114 @@
-/* TODO: make it beauty */
+/* Color Pallete
+* Source: https://paletadecores.com/paleta/caff42/ebf7f8/d0e0eb/88abc2/49708a/
+*/
+:root {
+    --color-bright-green: #caff42;
+    --color-lighter-blue: #ebf7f8;
+    --color-light-blue: #d0e0eb;
+    --color-blue: #88abc2;
+    --color-dark-blue: #49708a;
+    --font-color-for-light-bg: rgb(0, 14, 25);
+    --font-color-for-dark-bg: rgb(255, 255, 255);
+}
+
+/* Reset */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gabarito', cursive;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--font-color-for-light-bg);
+    background-color: var(--color-lighter-blue);
+}
+
+a {
+    text-decoration: none;
+}
+
+label {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+button {
+    font-weight: 700;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 4px;
+    background: var(--color-dark-blue);
+    color: var(--font-color-for-dark-bg);
+}
+
+button:hover {
+    background: var(--color-blue);
+}
+
+input:not([type="checkbox"],[type="radio"]) {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 0;
+    color: var(--font-color-for-light-bg);
+}
+
+button:focus,
+input:not([type="checkbox"],[type="radio"]):focus {
+    outline: 1px solid var(--color-light-blue);
+}
+
+/* Flexbox */
+.flex {
+    display: flex;
+    gap: 8px;
+}
+
+.flex-bottom {
+    align-items: end;
+}
+
+.flex-item {
+    flex-grow: 1;
+}
+
+/* Page style */
+
+#searchForm {
+    margin-bottom: 12px;
+}
+
+#searchResult {
+    background: white;
+    padding: 24px 8px;
+    border-radius: 4px;
+}
+
+
+.container {
+    padding: 24px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .container {
+        max-width: 96%;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .container {
+        max-width: 88%;
+    }
+}

@@ -3,24 +3,29 @@
     <head>
         <meta charset="utf-8" />
         <title>Aracaju Saúde HTML - by &lt;codeAspiras/&gt;</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./assets/css/main.css" />
     </head>
     <body>
-        <!-- Form -->
-        <form id="searchForm" class="flex">
-            <div class="flex-item">
-                <label>CPFs, CNSs ou Números de Protocolo separados por espaço</label>
-                <input type="text" id="document" placeholder="Digite aqui" />
-            </div>
-            <div class="flex-item">
-                <button type="submit">Buscar</button>
-            </div>
-        </form>
+        <section class="container">
+            <!-- Form -->
+            <form id="searchForm" class="flex flex-bottom">
+                <div class="flex-item">
+                    <label>CPFs, CNSs ou Números de Protocolo separados por espaço</label>
+                    <input type="text" id="document" placeholder="Digite aqui" />
+                </div>
+                <div class="flex-item">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
 
-        <!-- Form Result -->
-        <div id="searchResult">
-            Informe ao menos um CPF, CNS ou Número de Protocolo no campo acima e clique em buscar para efetuarmos a busca.
-        </div>
+            <!-- Form Result -->
+            <div id="searchResult">
+                Informe ao menos um CPF, CNS ou Número de Protocolo no campo acima e clique em buscar para efetuarmos a busca.
+            </div>
+        </section>
         <script type="text/javascript" src="./assets/js/main.js"></script>
     </body>
 </html>
